@@ -1,6 +1,7 @@
 #include "ExampleSubsystem.h"
 #include "../RobotMap.h"
 
+
 ExampleSubsystem::ExampleSubsystem() :
 		Subsystem("ExampleSubsystem")
 {
@@ -9,5 +10,12 @@ ExampleSubsystem::ExampleSubsystem() :
 
 void ExampleSubsystem::InitDefaultCommand()
 {
- ;
+
+}
+
+void ExampleSubsystem::readPIXYCam()
+{
+	uint8_t block=1;
+	block = m_cam->getBlocks(block);
+
 }

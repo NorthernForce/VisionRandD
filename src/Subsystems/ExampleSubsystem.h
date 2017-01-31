@@ -11,9 +11,10 @@ class ExampleSubsystem: public Subsystem
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	PIXYCam m_cam;
+	PIXYCam* m_cam;
 public:
 	ExampleSubsystem();
+	void readPIXYCam();
 	void InitDefaultCommand();
 };
 
