@@ -3,6 +3,7 @@
 
 #include "../CommandBase.h"
 #include "WPILib.h"
+#include "../Subsystems/ExampleSubsystem.h"
 
 class ExampleCommand: public CommandBase
 {

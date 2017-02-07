@@ -14,7 +14,7 @@ private:
 	PIXYCam* m_cam;
 public:
 	ExampleSubsystem();
-	void readPIXYCam();
+	Block readPIXYCam();
 	void InitDefaultCommand();
 };
 

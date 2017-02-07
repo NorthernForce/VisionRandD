@@ -3,18 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define PIXY_ARRAYSIZE              100
-#define PIXY_START_WORD             0xaa55
-#define PIXY_START_WORD_CC          0xaa56
-#define PIXY_START_WORDX            0x55aa
-#define PIXY_SERVO_SYNC             0xff
-#define PIXY_CAM_BRIGHTNESS_SYNC    0xfe
-#define PIXY_LED_SYNC               0xfd
-#define PIXY_OUTBUF_SIZE            64
-
-#define PIXY_SYNC_BYTE              0x5a
-#define PIXY_SYNC_BYTE_DATA         0x5b
-
 
 // variables for a little circular queue
 static uint8_t g_outBuf[PIXY_OUTBUF_SIZE];
@@ -23,6 +11,7 @@ static uint8_t g_outWriteIndex = 0;
 static uint8_t g_outReadIndex = 0;
 
 PIXYCam::PIXYCam(SPI::Port port) : SPI(port) {
+  init(); // allocates buffer of blocks, g_block
   SetClockRate(500000);
   SetMSBFirst();
   SetSampleDataOnFalling();
@@ -101,11 +90,11 @@ int PIXYCam::send(uint8_t *data, int len)
 
 static int g_skipStart = 0;
 static BlockType g_blockType;
-static Block *g_blocks;
+
 
 void PIXYCam::init()
 {
-  g_blocks = (Block *)malloc(sizeof(Block)*PIXY_ARRAYSIZE);
+  // nothing for now
 }
 
 int PIXYCam::getStart(void)
@@ -113,7 +102,7 @@ int PIXYCam::getStart(void)
   uint16_t w, lastw;
   uint8_t indata;
   uint8_t outdata;
-  int32_t rv;
+  int rv;
 
   lastw = 0xffff;
 
