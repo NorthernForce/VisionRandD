@@ -1,4 +1,5 @@
 #include "ExampleSubsystem.h"
+#include <Commands/ExampleCommand.h>
 #include "../RobotMap.h"
 
 
